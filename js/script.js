@@ -16,11 +16,9 @@ function loadData() {
     // YOUR CODE GOES HERE!
     var street = $('#street').val();
     var city = $('#city').val();
-    var address = street+","+city;
-    console.log(street, city);
+    var address = street+", "+city;
     //get Google street view pic:
     var imageUrl = "http://maps.googleapis.com/maps/api/streetview?size=600x300&location="+address;
-    console.log(imageUrl);
     $body.append('<img class="bgimg" src="'+imageUrl+'">');
 
     // get nyt article:
@@ -34,7 +32,17 @@ function loadData() {
       url: url,
       method: 'GET',
     }).done(function(result) {
-      console.log(result);
+      var articles = result.response.docs;
+      $nytHeaderElem.text('New York Times articles about '+address);
+      for (var i = 0; i < articles.length; i++){
+          console.log(articles[i]);
+          $('#nytimes-articles').append("<li>"+articles[i].headline.main+"</li>");
+      }
+    //   articles.forEach(function(element){
+    //       console.log("Element is" + articles[0]);
+    //       $('#nytimes-articles').append("<li>Hi</li>");
+    //   });
+      //console.log(articles);
     }).fail(function(err) {
       throw err;
     });

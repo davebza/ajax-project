@@ -35,8 +35,9 @@ function loadData() {
       var articles = result.response.docs;
       $nytHeaderElem.text('New York Times articles about '+address);
       for (var i = 0; i < articles.length; i++){
-          console.log(articles[i]);
-          $('#nytimes-articles').append("<li>"+articles[i].headline.main+"</li>");
+          var article = articles[i];
+          $nytElem.append('<li class="article">'+'<a href="'+article.web_url+'">'+article.headline.main+'</a><p>'+article.snippet+'</p>'+'</li>');
+
       }
     //   articles.forEach(function(element){
     //       console.log("Element is" + articles[0]);

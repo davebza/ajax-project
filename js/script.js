@@ -39,13 +39,8 @@ function loadData() {
           $nytElem.append('<li class="article">'+'<a href="'+article.web_url+'">'+article.headline.main+'</a><p>'+article.snippet+'</p>'+'</li>');
 
       }
-    //   articles.forEach(function(element){
-    //       console.log("Element is" + articles[0]);
-    //       $('#nytimes-articles').append("<li>Hi</li>");
-    //   });
-      //console.log(articles);
-    }).fail(function(err) {
-      throw err;
+  }).error(function(e) {
+      $nytHeaderElem.text('New York Times Articles could not be found for this location.');
     });
 
     return false;
